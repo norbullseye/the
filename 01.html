@@ -32,9 +32,9 @@
     </div>
     <p class="p"></br></p>
     <p id="date"class="p"></br></p>
-    <p></br><p>
+    <p></br></p>
     <p id="main"class="p"></br></p>
-    <p></br><p>
+    <p></br></p>
     <button style="height:50px;width:170px;" type="button"onclick="a1()"id="b"class="button">开始游戏</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="c1()"id="no1"class="button">第一卷 : 上学期</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf1()"id="t1"class="button">good luck dog : 老师不会提问你</button>
@@ -86,6 +86,19 @@
     event=0;
     sci=5;
     la=5;
+    twgl = false;
+    cy = false;
+    fast = false;
+    myl = false;
+    china = false;
+    pk = false;
+    money = false;
+    ht = false;
+    ze = false;
+    dy = false;
+    gqs = false;
+    zt = false;
+    yyj = false;
     IQ=Number(IQ);
     jiankang=Number(jiankang);
     yanzhi=Number(yanzhi);
@@ -417,7 +430,7 @@ else if (number1>=90 && number1<100)
                 sci+=1;
                 la+=1;
                 IQ+=1;
-                if (fast==true) {
+                if (fast) {
                     jiankang-=1;
                     document.getElementById("y").hidden=true;
                     document.getElementById("n").hidden=true;
@@ -470,7 +483,7 @@ else if (number1>=90 && number1<100)
                 } 
                 var aa = Math.random();
                 aa = Math.ceil(aa * 101);
-                if ((aa>0 && aa<=tizhi)||myl==true) {
+                if ((aa>0 && aa<=tizhi)||myl) {
                     document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
                     xinqing+=1;
                 } else {
