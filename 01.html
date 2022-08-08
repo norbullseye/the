@@ -1,4 +1,4 @@
-<!--1-->
+<!---->
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +21,9 @@
     color: antiquewhite;
     font-size:20px;
 }
+    #xuigai{
+        color:#424242;
+    }
 </style>
 </head>
 <body bgcolor="black"text="white"style="text-align: center;">
@@ -62,20 +65,20 @@
     <button hidden style="height:50px;width:170px;"type="button"onclick="game()"id="x2"class="button">玩游戏</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="tv()"id="x3"class="button">看电视</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="cinema()"id="x4"class="button">看电影</button>
-        <p hidden id="sr1"class="p">智商：</p>
+        <p hidden id="sr1" class="p">智商：</p>
         <input type="text" hidden id="sr10" name="IQ"style="height:25px;">
     </div>
     <div>
-        <p hidden id="sr2"class="p">颜值：</p>
+        <p hidden id="sr2" class="p">颜值：</p>
         <input type="text" hidden id="sr20" name="yanzhi"style="height:25px;">
     </div>
     <div>
-        <p hidden id="sr3"class="p">健康：</p>
+        <p hidden id="sr3" class="p">健康：</p>
         <input type="text" hidden id="sr30" name="jiankang"style="height:25px;">
     </div>
     <p></br></p>
     <button hidden style="height:40px;width:200px;"type="button"onclick="dsjc()"id="ks"class="button">下一步</button>
-
+    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/8</p>
 <script>
     ds=20;
     IQ=0;
@@ -112,6 +115,7 @@
         }
         function a1()//隐藏开始按钮，显示选关
         {
+        document.getElementById("xuigai").hidden=true;
         document.getElementById("b").hidden=true;
         document.getElementById("no1").hidden=false;
            }
@@ -325,6 +329,7 @@ else if (number1>=90 && number1<100)
                     month=1;
                 }
             }
+            
             if(month==2)//胜利判定
             {
                 document.getElementById("main").innerHTML="终于放寒假了,你赢了!";
@@ -334,12 +339,21 @@ else if (number1>=90 && number1<100)
             document.getElementById("date").innerHTML=month+"月"+"&nbsp;&nbsp;&nbsp;&nbsp"+"第"+week+"个星期"+"&nbsp;&nbsp;&nbsp;&nbsp"+event+"/2";
             if(jiankang<=(0-5))//死亡判定
                 {
-                    document.getElementById("main").innerHTML="健康值太低,你死了";
+                    document.getElementById("main").innerHTML="健康值太低,你生了一场大病,你死了";
                     document.getElementById("end").hidden=false;
                 }else{
                 var number2 = Math.random();
                 number2 = Math.ceil(number2 * 50);
                 document.getElementById("c").innerHTML=number2;
+                if (month==10&&week==1) {
+                    document.getElementById("main").innerHTML="现在是十一小长假,你是肝作业还是玩上一小会?";
+                    document.getElementById("y").onclick=shiyi_y;
+                    document.getElementById("n").onclick=shiyi_n;
+                    document.getElementById("y").innerHTML="当然,我要内卷";
+                    document.getElementById("n").innerHTML="七天呢,休息一下吧";
+                    document.getElementById("y").hidden=false;//显示选择按钮
+                    document.getElementById("n").hidden=false;
+                }else{
                 if (number2>=5 && number2<10){
                     homework();//作业
                 }
@@ -392,6 +406,7 @@ else if (number1>=90 && number1<100)
                 }
             }
         }
+    }
         IQ=Number(IQ);
         jiankang=Number(jiankang);
         yanzhi=Number(yanzhi);
@@ -399,8 +414,13 @@ else if (number1>=90 && number1<100)
         sci=Number(sci);
         la=Number(la);
     }
+        function button_innerHTML(){
+            document.getElementById("y").innerHTML="是";
+            document.getElementById("n").innerHTML="否";
+            }
+
         function tiwen(){//提问事件
-                if(twgl == true){
+                if(twgl){
                             document.getElementById("main").innerHTML="老师在课堂上提问,幸运的是没有提问你";
                             document.getElementById("xyg").hidden=false;
                         }
@@ -499,11 +519,13 @@ else if (number1>=90 && number1<100)
                 document.getElementById("main").innerHTML="同学向你介绍了一个游戏,你想玩吗?";
                 document.getElementById("y").onclick=g_y;
                 document.getElementById("n").onclick=g_n;
+                document.getElementById("y").innerHTML="当然,谁不玩游戏";
+                document.getElementById("n").innerHTML="不,我爱学习";
                 document.getElementById("y").hidden=false;//显示选择按钮
                 document.getElementById("n").hidden=false;
                 document.getElementById("x1").hidden=true;
                 document.getElementById("x3").hidden=true;
-            document.getElementById("x4").hidden=true;
+                document.getElementById("x4").hidden=true;
             }
         function g_y(){
                 document.getElementById("main").innerHTML="你玩了游戏,但占用了学习时间";
@@ -515,6 +537,7 @@ else if (number1>=90 && number1<100)
                 document.getElementById("xyg").hidden=false;
                 document.getElementById("y").hidden=true;
                 document.getElementById("n").hidden=true;
+                button_innerHTML();
             }
         function g_n(){
                 document.getElementById("main").innerHTML="你没有玩游戏,而是认真学习";
@@ -526,6 +549,7 @@ else if (number1>=90 && number1<100)
                 document.getElementById("xyg").hidden=false;
                 document.getElementById("y").hidden=true;
                 document.getElementById("n").hidden=true;
+                button_innerHTML();
             }
         function plant(){//植物
                 document.getElementById("main").innerHTML="这天你精心照料的花开了,你很高兴";
@@ -598,7 +622,7 @@ else if (number1>=90 && number1<100)
                 document.getElementById("n").hidden=true;
             }
         function snacks(){//零食
-            document.getElementById("main").innerHTML="今天你和同学一起分享了零食,你很开心";
+            document.getElementById("main").innerHTML="今天你和同学一起分享了零食,你很开心 白嫖怪的快乐,你们体会不到";
             xinqing+=2;
             jiankang-=1;
             document.getElementById("xyg").hidden=false;
@@ -608,6 +632,8 @@ else if (number1>=90 && number1<100)
             document.getElementById("main").innerHTML="这天你无事可做,你想买一些练习题做吗?";
             document.getElementById("y").onclick=in_y;
             document.getElementById("n").onclick=in_n;
+            document.getElementById("y").innerHTML="当然,我要内卷";
+            document.getElementById("n").innerHTML="不,哪个正常人会内卷";
             document.getElementById("y").hidden=false;//显示选择按钮
             document.getElementById("n").hidden=false;    
             document.getElementById("x2").hidden=true;
@@ -617,7 +643,7 @@ else if (number1>=90 && number1<100)
         }
         function in_y(){
             if (money) {
-                document.getElementById("main").innerHTML="你买了好几本练习题,全部做完了";
+                document.getElementById("main").innerHTML="你买了好几本练习题,全部做完了 内卷使我快乐!";
                 jiankang-=4;
                 xinqing-=1;
                 IQ=IQ+2;
@@ -626,8 +652,9 @@ else if (number1>=90 && number1<100)
                 document.getElementById("xyg").hidden=false;
                 document.getElementById("y").hidden=true;
                 document.getElementById("n").hidden=true;
+                button_innerHTML();
             } else {
-                document.getElementById("main").innerHTML="你买了一本练习题,全部做完了";
+                document.getElementById("main").innerHTML="你买了一本练习题,全部做完了 内卷使我快乐!";
                 jiankang-=2;
                 xinqing-=1;
                 IQ=IQ+1;
@@ -636,6 +663,7 @@ else if (number1>=90 && number1<100)
                 document.getElementById("xyg").hidden=false;
                 document.getElementById("y").hidden=true;
                 document.getElementById("n").hidden=true;
+                button_innerHTML();
             }
         }
         function in_n(){
@@ -645,6 +673,7 @@ else if (number1>=90 && number1<100)
             document.getElementById("xyg").hidden=false;
             document.getElementById("y").hidden=true;
             document.getElementById("n").hidden=true;
+            button_innerHTML();
         }
         function tv(){//电视
             document.getElementById("x3").hidden=true;
@@ -682,7 +711,31 @@ else if (number1>=90 && number1<100)
             document.getElementById("x4").hidden=false;
 
         }
-
+        function shiyi_y(){
+            document.getElementById("main").innerHTML="你把作业都写完了";
+            if (fast) {
+                jiankang-=1;
+            } else {
+                jiankang-=2;
+            }
+            xinqing+=1;
+            IQ=IQ+2;
+            sci+=2;
+            la+=2;
+            document.getElementById("xyg").hidden=false;
+            document.getElementById("y").hidden=true;
+            document.getElementById("n").hidden=true;
+            button_innerHTML();
+        }
+        function shiyi_n(){
+            document.getElementById("main").innerHTML="你玩了一整天";
+            xinqing+=3;
+            IQ-=1;
+            document.getElementById("xyg").hidden=false;
+            document.getElementById("y").hidden=true;
+            document.getElementById("n").hidden=true;
+            button_innerHTML();
+        }
 </script>
 </body>
 </html>
