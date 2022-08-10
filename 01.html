@@ -79,7 +79,7 @@
     </div>
     <p></br></p>
     <button hidden style="height:40px;width:200px;"type="button"onclick="dsjc()"id="ks"class="button">下一步</button>
-    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/9</p>
+    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/10 21:35</p>
 <script>
     ds=20;
     IQ=0;
@@ -92,6 +92,8 @@
     sci=5;
     la=5;
     myopia=0;
+    mid_term_exam=0;
+    final_exam=0;
     twgl = false;
     cy = false;
     fast = false;
@@ -352,7 +354,7 @@ else if (number1>=90 && number1<100)
                     document.getElementById("end").hidden=false;
                 }else{
                 var number2 = Math.random();
-                number2 = Math.ceil(number2 * 50);
+                number2 = Math.ceil(number2 * 65);
                 document.getElementById("c").innerHTML=number2;
                 if (month==10&&week==1) {
                     document.getElementById("main").innerHTML="现在是十一小长假,你是肝作业还是玩上一小会?";
@@ -362,26 +364,107 @@ else if (number1>=90 && number1<100)
                     document.getElementById("n").innerHTML="七天呢,休息一下吧";
                     document.getElementById("y").hidden=false;//显示选择按钮
                     document.getElementById("n").hidden=false;
-                }else{
+                }else if(month==11&&week==2&&event==1){
+                    if (yyj) {
+                        document.getElementById("main").innerHTML="天赋[预言家]发动<br>期中考试将于这周举行<br>你要卷一卷吗?";
+                        document.getElementById("y").onclick=yyj_y;
+                        document.getElementById("n").onclick=yyj_n;
+                        document.getElementById("y").innerHTML="当然,我要内卷";
+                        document.getElementById("n").innerHTML="算了吧";
+                    } else {
+                        document.getElementById("main").innerHTML="期中考试将于这周举行";
+                        xinqing-=1;
+                        document.getElementById("xyg").hidden=false;
+                    }
+                }else if(month==11&&week==2&&event==2){
+                    var bc = Math.random();
+                    bc = Math.ceil(bc * 10);
+                    mid_term_exam=IQ*10+sci*2+la*3+bc-75
+                    if (mid_term_exam>499) {
+                        mid_term_exam=480
+                    } 
+                    document.getElementById("main").innerHTML="期中考试结束了<br>你的成绩为"+mid_term_exam;
+                    if (mid_term_exam>400&&mid_term_exam<=420) {
+                        jiankang+=1;
+                        xinqing+=2;
+                        IQ+=1;
+                    } else if (mid_term_exam>420&&mid_term_exam<=450){
+                        jiankang+=1;
+                        xinqing+=3;
+                        IQ+=2;
+                    }else if (mid_term_exam>450){
+                        jiankang+=2;
+                        xinqing+=3;
+                        IQ+=2;
+                    }else if (mid_term_exam<=400){
+                        xinqing-=1;
+                    }else{
+
+                    }
+                    document.getElementById("xyg").hidden=false;
+                }else if(month==1&&week==4&&event==1){
+                    if (yyj) {
+                        document.getElementById("main").innerHTML="天赋[预言家]发动<br>期末考试将于这周举行<br>你要卷一卷吗?";
+                        document.getElementById("y").onclick=yyj_y;
+                        document.getElementById("n").onclick=yyj_n;
+                        document.getElementById("y").innerHTML="当然,我要内卷";
+                        document.getElementById("n").innerHTML="算了吧";
+                    } else {
+                        document.getElementById("main").innerHTML="期末考试将于这周举行";
+                        xinqing-=1;
+                        document.getElementById("xyg").hidden=false;
+                    }
+                }else if(month==1&&week==4&&event==2){
+                    var bc = Math.random();
+                    bc = Math.ceil(bc * 10);
+                    final_exam=IQ*10+sci*2+la*3+bc-75
+                    if (final_exam>499) {
+                        final_exam=final_exam-bc*2
+                    } 
+                    document.getElementById("main").innerHTML="期末考试结束了<br>你的成绩为"+final_exam;
+                    if (final_exam>400&&final_exam<=420) {
+                        jiankang+=1;
+                        xinqing+=2;
+                        IQ+=1;
+                    } else if (final_exam>420&&final_exam<=450){
+                        jiankang+=1;
+                        xinqing+=3;
+                        IQ+=2;
+                    }else if (final_exam>450){
+                        jiankang+=2;
+                        xinqing+=3;
+                        IQ+=2;
+                    }else if (final_exam<=400){
+                        xinqing-=1;
+                        jiankang-=1;
+                    }else if (final_exam<=370){
+                        xinqing-=2;
+                        jiankang-=2;
+                    }else{
+                        
+                    }
+                    document.getElementById("xyg").hidden=false;
+                }
+                else{
                 if (number2>=1 && number2<5){
                     tiwen();//提问
                 }   
                 else if (number2>=5 && number2<10){
                     homework();//作业
                 }
-                else if (number2>=10 && number2<13 )
+                else if (number2>=10 && number2<13)
                 {
                     bing();//生病
                 }
-                else if (number2>=13 && number2<15 )
+                else if (number2>=13 && number2<15)
                 {
                     game();//游戏
                 }
-                else if (number2>=15 && number2<18 )
+                else if (number2>=15 && number2<18)
                 {
                     plant();//植物
                 }
-                else if (number2>=18 && number2<21 )
+                else if (number2>=18 && number2<21)
                 {
                     ceshi();//测试
                 }
@@ -389,7 +472,7 @@ else if (number1>=90 && number1<100)
                 {
                     late();//迟到
                 }
-                else if (number2>=25 && number2<28  )
+                else if (number2>=25 && number2<28)
                 {
                     sports();//运动
                 }
@@ -437,7 +520,7 @@ else if (number1>=90 && number1<100)
 
         function tiwen(){//提问事件
                 if(twgl){
-                    document.getElementById("main").innerHTML="老师在课堂上提问,幸运的是没有提问你";
+                    document.getElementById("main").innerHTML="天赋[good luck dog]发动<br>老师在课堂上提问,幸运的是没有提问你";
                     document.getElementById("xyg").hidden=false;
                 }else{
                 if(IQ<=5)
@@ -470,6 +553,7 @@ else if (number1>=90 && number1<100)
                 IQ+=1;
                 if (fast) {
                     jiankang-=1;
+                    document.getElementById("main").innerHTML="天赋[手速]发动<br>你认真写完了作业,成绩提高了";
                     document.getElementById("y").hidden=true;
                     document.getElementById("n").hidden=true;
                 } else {
@@ -522,8 +606,13 @@ else if (number1>=90 && number1<100)
                 var aa = Math.random();
                 aa = Math.ceil(aa * 101);
                 if ((aa>0 && aa<=tizhi)||myl) {
-                    document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
-                    xinqing+=1;
+                    if (aa>0 && aa<=tizhi) {
+                        document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
+                        xinqing+=1;
+                    } else if (myl) {
+                        document.getElementById("main").innerHTML="天赋[百毒不侵]发动<br>最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
+                        xinqing+=1;
+                    }
                 } else {
                     document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,你生病了";
                     jiankang-=2;
@@ -660,7 +749,7 @@ else if (number1>=90 && number1<100)
         }
         function in_y(){
             if (money) {
-                document.getElementById("main").innerHTML="你买了好几本练习题,全部做完了<br> 内卷使我快乐!";
+                document.getElementById("main").innerHTML="天赋[富二代]发动<br>你买了好几本练习题,全部做完了<br> 内卷使我快乐!";
                 jiankang-=4;
                 xinqing-=1;
                 IQ=IQ+2;
@@ -752,6 +841,7 @@ else if (number1>=90 && number1<100)
         function shiyi_y(){
             document.getElementById("main").innerHTML="你把作业都写完了";
             if (fast) {
+                document.getElementById("main").innerHTML="天赋[手速]发动<br>你把作业都写完了";
                 jiankang-=1;
             } else {
                 jiankang-=2;
@@ -775,8 +865,45 @@ else if (number1>=90 && number1<100)
             document.getElementById("n").hidden=true;
             button_innerHTML();
         }
-        function news(){
-            
+        function yyj_y(){
+            document.getElementById("main").innerHTML="你买了一本练习题,全部做完了<br> 内卷使我快乐!";
+            jiankang-=3;
+            IQ=IQ+2;
+            sci+=2;
+            la+=2;
+            document.getElementById("xyg").hidden=false;
+            document.getElementById("y").hidden=true;
+            document.getElementById("n").hidden=true;
+            button_innerHTML();
+        }
+        function yyj_n(){
+            document.getElementById("main").innerHTML="你玩了一整天";
+            xinqing+=2;
+            jiankang+=1;
+            document.getElementById("xyg").hidden=false;
+            document.getElementById("y").hidden=true;
+            document.getElementById("n").hidden=true;
+            button_innerHTML();
+        }
+        function news(){//新闻
+            var bb = Math.random();
+            bb = Math.ceil(bb * 101);
+            if (bb>0&&bb<=40) {
+                document.getElementById("main").innerHTML="新闻<br>H市某地发生火灾,多人遇难";
+                xinqing-=1;
+                document.getElementById("xyg").hidden=false;
+            } else if (bb>40&&bb<=70){
+                document.getElementById("main").innerHTML="新闻<br>Z省发生洪灾,农作物歉收";
+                xinqing-=1;
+                jiankang-=1;
+                document.getElementById("xyg").hidden=false;
+            } else {
+                document.getElementById("main").innerHTML="新闻<br>E国与W国开战<br>远离战争，珍爱和平";
+                xinqing-=1;
+                jiankang-=1;
+                document.getElementById("xyg").hidden=false;  
+            document.getElementById("xyg").hidden=false;
+            }
         }
 
 </script>
