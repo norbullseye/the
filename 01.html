@@ -79,7 +79,7 @@
     </div>
     <p></br></p>
     <button hidden style="height:40px;width:200px;"type="button"onclick="dsjc()"id="ks"class="button">下一步</button>
-    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/10 21:35</p>
+    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/11 18:25</p>
 <script>
     ds=20;
     IQ=0;
@@ -329,19 +329,19 @@ else if (number1>=90 && number1<100)
             {
                 event=0;
                 week+=1;
-                if(week==4&&month<12)
+                if(week==5&&month<12)
                 {
                     week=1;
                     month=month+1;
                 }
-                if(week==4&&month==12)
+                if(week==5&&month==12)
                 {
                     week=1;
                     month=1;
                 }
             }
             
-            if(month==2)//胜利判定
+            if(month==2&&week==1&&event==1)//胜利判定
             {
                 document.getElementById("main").innerHTML="终于放寒假了,你赢了!";
                 document.getElementById("game").hidden=false;
@@ -379,7 +379,7 @@ else if (number1>=90 && number1<100)
                 }else if(month==11&&week==2&&event==2){
                     var bc = Math.random();
                     bc = Math.ceil(bc * 10);
-                    mid_term_exam=IQ*10+sci*2+la*3+bc-75
+                    mid_term_exam=IQ*10+sci*2+la*3+bc-45
                     if (mid_term_exam>499) {
                         mid_term_exam=480
                     } 
@@ -398,9 +398,21 @@ else if (number1>=90 && number1<100)
                         IQ+=2;
                     }else if (mid_term_exam<=400){
                         xinqing-=1;
-                    }else{
-
-                    }
+                    }else if (mid_term_exam<=350){
+                        xinqing-=1;
+                        jiankang-=1;
+                        IQ-=2;
+                    }else if (mid_term_exam<=300){
+                        xinqing-=3;
+                        jiankang-=2;
+                        IQ-=2;
+                        document.getElementById("main").innerHTML="期中考试结束了<br>你的成绩为"+mid_term_exam+"<br>你考得并不好";
+                    }else if (mid_term_exam<=250){
+                        xinqing-=3;
+                        jiankang-=3;
+                        IQ-=3;
+                        document.getElementById("main").innerHTML="期中考试结束了<br>你的成绩为"+mid_term_exam+"<br>你考得很差";
+                    }else{}
                     document.getElementById("xyg").hidden=false;
                 }else if(month==1&&week==4&&event==1){
                     if (yyj) {
@@ -417,7 +429,7 @@ else if (number1>=90 && number1<100)
                 }else if(month==1&&week==4&&event==2){
                     var bc = Math.random();
                     bc = Math.ceil(bc * 10);
-                    final_exam=IQ*10+sci*2+la*3+bc-75
+                    final_exam=IQ*10+sci*2+la*3+bc-45
                     if (final_exam>499) {
                         final_exam=final_exam-bc*2
                     } 
@@ -440,9 +452,19 @@ else if (number1>=90 && number1<100)
                     }else if (final_exam<=370){
                         xinqing-=2;
                         jiankang-=2;
-                    }else{
-                        
-                    }
+                    }else if (mid_term_exam<=350){
+                        xinqing-=1;
+                        jiankang-=1;
+                        IQ-=2;
+                    }else if (mid_term_exam<=300){
+                        xinqing-=3;
+                        jiankang-=2;
+                        IQ-=2;
+                    }else if (mid_term_exam<=250){
+                        xinqing-=3;
+                        jiankang-=3;
+                        IQ-=3;
+                    }else{}
                     document.getElementById("xyg").hidden=false;
                 }
                 else{
@@ -607,10 +629,10 @@ else if (number1>=90 && number1<100)
                 aa = Math.ceil(aa * 101);
                 if ((aa>0 && aa<=tizhi)||myl) {
                     if (aa>0 && aa<=tizhi) {
-                        document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
+                        document.getElementById("main").innerHTML="最近你所在学校出现了流感病例,所幸你免疫力较强,没有生病";
                         xinqing+=1;
                     } else if (myl) {
-                        document.getElementById("main").innerHTML="天赋[百毒不侵]发动<br>最近你所在学校出现了流感病例,所幸你抵抗力较强,没有生病";
+                        document.getElementById("main").innerHTML="天赋[百毒不侵]发动<br>最近你所在学校出现了流感病例,所幸你免疫力较强,没有生病";
                         xinqing+=1;
                     }
                 } else {
