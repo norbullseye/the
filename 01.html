@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>学涯模拟器</title>
     <embed src=".music/background music.mp3" autostart="true" loop="true" hidden="true"></embed>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-    </script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <style>
     .button {
     background-color: white;
@@ -29,14 +29,14 @@
 </head>
 <body bgcolor="black"text="white"style="text-align: center;">
     <h1 align="center"class="p">学涯模拟器</h1>
-    <p id="c" class="p"></br></p>
+    <p hidden id="c" class="p"></br></p>
     <p id="a"class="p"></p>
     <p hidden id="ds"class="p"> </p>
     <div>
-    <p id="sz"class="p"></p>
+    <p hidden id="sz"class="p"></p>
     </div>
     <p class="p"></br></p>
-    <p id="date"class="p"></br></p>
+    <p hidden id="date"class="p"></br></p>
     <p></br></p>
     <p id="main"class="p"></br></p>
     <p></br></p>
@@ -130,6 +130,7 @@
         {
         document.getElementById("a").innerHTML="选择你想要的天赋";
         document.getElementById("no1").hidden=true;
+        document.getElementById("sz").hidden=false;
         var number1 = Math.random();//随机数生成
         number1 = Math.ceil(number1 * 101);
 
@@ -335,6 +336,7 @@ else if (number1>100)
                 main();
             }
         function main(){
+            document.getElementById("date").hidden=false;
             IQ=Number(IQ);
             jiankang=Number(jiankang);
             yanzhi=Number(yanzhi);
@@ -373,7 +375,7 @@ else if (number1>100)
                 }else{
                 var number2 = Math.random();
                 number2 = Math.ceil(number2 * 65);
-                document.getElementById("c").innerHTML=number2;
+                //document.getElementById("c").innerHTML=number2;
                 if (month==10&&week==1) {
                     document.getElementById("main").innerHTML="现在是十一小长假,你是肝作业还是玩上一小会?";
                     document.getElementById("y").onclick=shiyi_y;
