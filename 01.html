@@ -6,14 +6,13 @@
     <title>学涯模拟器</title>
     <embed src=".music/background music.mp3" autostart="true" loop="true" hidden="true"></embed>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <style>
-    .button {
+    button {
         background-color: white;
         color: black;
         border: 2px solid #008CBA;
 }
-    .button:hover {
+    button:hover {
         background-color: #008CBA;
         color: white;
 }
@@ -60,15 +59,16 @@
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf14()"id="t14"class="button">预言家 : 考试前能用健康值提高成绩</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf15()"id="t15"class="button">人生赢家 : 可用点数+15</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf16()"id="t16"class="button">鹰眼 : 你不会近视</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="end"class="button">重新开始</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="game"class="button">再玩一局</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="h_y()"id="y"class="button">是</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="h_n()"id="n"class="button">否</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="main()"id="xyg"class="button">下一个</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="involution()"id="x1"class="button">内卷</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="game()"id="x2"class="button">玩游戏</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="tv()"id="x3"class="button">看电视</button>
-    <button hidden style="height:50px;width:170px;"type="button"onclick="cinema()"id="x4"class="button">看电影</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="end">重新开始</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="game">再玩一局</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="h_y()"id="y">是</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="h_n()"id="n">否</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="main()"id="xyg">下一个</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="involution()"id="x1">内卷</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="game()"id="x2">玩游戏</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="tv()"id="x3">看电视</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="cinema()"id="x4">看电影</button>
+    <div>
         <p hidden id="sr1" class="p">智商：</p>
         <input type="text" hidden id="sr10" name="IQ"style="height:25px;">
     </div>
@@ -82,7 +82,7 @@
     </div>
     <p></br></p>
     <button hidden style="height:40px;width:200px;"type="button"onclick="dsjc()"id="ks"class="button">下一步</button>
-    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/19 15:54</p>
+    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/23 10:00</p>
 <script>
     ds=20;
     IQ=0;
@@ -314,6 +314,9 @@ else if (number1>100)
             jiankang= document.getElementById("sr30").value;
             sci=sci+IQ;
             la=la+IQ;
+            if (IQ<0||yanzhi<0||jiankang<0) {
+                document.getElementById("ds").innerHTML="点数不能为负!";
+            } else {
             var dssy=ds-IQ-yanzhi-jiankang;
                 if (dssy<0)
                 {
@@ -333,6 +336,7 @@ else if (number1>100)
                     date();
                 }
             }
+        }
         function date(){
                 document.getElementById("date").innerHTML=month+"月"+"&nbsp;&nbsp;&nbsp;&nbsp"+"第"+week+"个星期"+"&nbsp;&nbsp;&nbsp;&nbsp"+event+"/2";
                 main();
@@ -405,7 +409,10 @@ else if (number1>100)
                     bc = Math.ceil(bc * 10);
                     mid_term_exam=IQ*10+sci*2+la*3+bc-45
                     if (mid_term_exam>499) {
-                        mid_term_exam=480
+                        mid_term_exam=499
+                    } 
+                    if (mid_term_exam<200) {
+                        mid_term_exam=200
                     } 
                     document.getElementById("main").innerHTML="期中考试结束了<br>你的成绩为"+mid_term_exam;
                     if (mid_term_exam>400&&mid_term_exam<=420) {
@@ -457,7 +464,10 @@ else if (number1>100)
                     bc = Math.ceil(bc * 10);
                     final_exam=IQ*10+sci*2+la*3+bc-45
                     if (final_exam>499) {
-                        final_exam=final_exam-bc*2
+                        final_exam=499
+                    } 
+                    if (final_exam<200) {
+                        final_exam=200
                     } 
                     document.getElementById("main").innerHTML="期末考试结束了<br>你的成绩为"+final_exam;
                     if (final_exam>400&&final_exam<=420) {
