@@ -673,6 +673,8 @@ else if (number1>100)
                 if (panni>=4) {
                     document.getElementById("panni").hidden=false;
                     document.getElementById("panni").innerHTML="直接摆烂不写"
+                    document.getElementById("y").hidden=true;
+                    document.getElementById("n").hidden=true;
                 }
             }
         function h_y(){
@@ -1055,6 +1057,7 @@ else if (number1>100)
             }
         }
             function panni_h(){
+                    document.getElementById("panni").hidden=true;
                     if (ht) {
                         document.getElementById("main").innerHTML="天赋[有后台]发动<br>老师敢怒不敢言";
                         xinqing+=1;
