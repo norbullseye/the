@@ -11,10 +11,12 @@
         background-color: white;
         color: black;
         border: 2px solid #008CBA;
+        font-size:15px;
 }
     button:hover {
         background-color: #008CBA;
         color: white;
+        cursor: pointer; 
 }
     .p {
         color: antiquewhite;
@@ -25,6 +27,47 @@
 }
     #h1{
         color: antiquewhite;
+    }
+    #chengjui:hover{
+        color: antiquewhite;
+    }
+    .chengjui{
+        height:250px;width:250px;
+        border-style:dotted;
+        font-size:20px;
+        padding-top: 10px;    
+        padding-bottom: 10px;
+    }
+    .column1{
+        position:absolute;
+        right:1500px;
+    }
+    .column2{
+        position:absolute;
+        right:1248px;
+    }
+    .column3{
+        position:absolute;
+        right:994px;
+    }
+    .column4{
+        position:absolute;
+        right:742px;
+    }    
+    .column5{
+        position:absolute;
+        right:490px;
+    }
+    .column6{
+        position:absolute;
+        right:238px;
+    }
+    .row1{
+        position:absolute;
+        bottom:440px;
+    }
+    img{
+        margin:auto;
     }
 </style>
 </head>
@@ -42,6 +85,7 @@
     <p id="main"class="p"></br></p>
     <p></br></p>
     <button style="height:50px;width:170px;" type="button"onclick="a1()"id="b"class="button">开始游戏</button>
+    <!-- 天赋 -->
     <button hidden style="height:45px;width:300px;"type="button"onclick="c1()"id="no1"class="button">第一卷 : 上学期</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf1()"id="t1"class="button">good luck dog : 老师不会提问你</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf2()"id="t2"class="button">多才多艺 : 会唱、跳、rap和篮球</button>
@@ -59,10 +103,12 @@
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf14()"id="t14"class="button">预言家 : 考试前能用健康值提高成绩</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf15()"id="t15"class="button">人生赢家 : 可用点数+15</button>
     <button hidden style="height:45px;width:300px;"type="button"onclick="tf16()"id="t16"class="button">鹰眼 : 你不会近视</button>
+    <!-- 选择按钮 -->
     <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="end">重新开始</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="end()"id="game">再玩一局</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="h_y()"id="y">是</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="h_n()"id="n">否</button>
+    <button hidden style="height:50px;width:170px;"type="button"onclick="panni_h()"id="panni">叛逆</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="main()"id="xyg">下一个</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="involution()"id="x1">内卷</button>
     <button hidden style="height:50px;width:170px;"type="button"onclick="game()"id="x2">玩游戏</button>
@@ -82,7 +128,16 @@
     </div>
     <p></br></p>
     <button hidden style="height:40px;width:200px;"type="button"onclick="dsjc()"id="ks"class="button">下一步</button>
-    <p style="position:absolute;right:10px;bottom:0px;" id="xuigai">最后修改于:2022/8/23 10:00</p>
+    <p style="position:absolute;right:10px;bottom:60px;" id="xuigai">最后修改于:2022/8/23 10:00</p>
+    </br></br><img style="bottom:440px;cursor:pointer;"src=".PNG/奖杯_trophy.png" alt="Game_achievements" width="135px" height="67px"align="center"id="chengjui_png"onclick="chengjui()" >
+    <!-- 成就 -->
+    <button hidden style="height:50px;width:70px;position:absolute;right:1670px;bottom:780px;border: 2px solid #008CBA;font-size:15px;"type="button"onclick="end()" class="chengjui">返回</button>
+    <p hidden class="chengjui column1 row1" id="tongguan">?????</br></br>???</p>
+    <p hidden class="chengjui column2 row1">?????</br></br>???</p>
+    <p hidden class="chengjui column3 row1">?????</br></br>???</p>
+    <p hidden class="chengjui column4 row1">?????</br></br>???</p>
+    <p hidden class="chengjui column5 row1">?????</br></br>???</p>
+    <p hidden class="chengjui column6 row1">?????</br></br>???</p>
 <script>
     ds=20;
     IQ=0;
@@ -97,6 +152,7 @@
     myopia=0;
     mid_term_exam=0;
     final_exam=0;
+    panni=0;
     twgl = false;
     cy = false;
     fast = false;
@@ -118,6 +174,16 @@
     xinqing=Number(xinqing);
     sci=Number(sci);
     la=Number(la);
+        function chengjui(){//成就
+            document.getElementById("xuigai").hidden=true;
+            document.getElementById("b").hidden=true;
+            document.getElementById("chengjui_png").hidden=true;
+            document.getElementById("a").innerHTML="成就";
+            $(".chengjui").show();
+            if (Cookies.get('tongguan')==1) {
+                document.getElementById("tonggian").innerHTML="存活成功</br></br>成功通关任意一局游戏";
+            }
+        }
         function end()//重新开始
         {
             location.reload();
@@ -127,7 +193,8 @@
         document.getElementById("xuigai").hidden=true;
         document.getElementById("b").hidden=true;
         document.getElementById("no1").hidden=false;
-           }
+        document.getElementById("chengjui_png").hidden=true;
+        }
         function c1()//随机生成，天赋选择
         {
         document.getElementById("a").innerHTML="选择你想要的天赋";
@@ -214,7 +281,6 @@ else if (number1>100)
     document.getElementById("t16").hidden=false;
     document.getElementById("t5").hidden=false;
 }
-
         }
         function tf1(){//天赋效果实装
              twgl = true;
@@ -331,14 +397,14 @@ else if (number1>100)
                     document.getElementById("sr20").hidden=true;
                     document.getElementById("sr3").hidden=true;
                     document.getElementById("sr30").hidden=true;
-                    document.getElementById("sz").innerHTML="智商"+IQ+"&nbsp;&nbsp;&nbsp;&nbsp"+"颜值"+yanzhi+"&nbsp;&nbsp;&nbsp;&nbsp"+"健康"+jiankang;
+                    document.getElementById("sz").innerHTML="智商"+IQ+"　　　　　　　　"+"颜值"+yanzhi+"　　　　　　　　"+"健康"+jiankang;
                     document.getElementById("ks").hidden=true;
                     date();
                 }
             }
         }
         function date(){
-                document.getElementById("date").innerHTML=month+"月"+"&nbsp;&nbsp;&nbsp;&nbsp"+"第"+week+"个星期"+"&nbsp;&nbsp;&nbsp;&nbsp"+event+"/2";
+                document.getElementById("date").innerHTML=month+"月"+"　　　　　　"+"第"+week+"个星期"+"　　　　　　"+event+"/2";
                 main();
             }
         function main(){
@@ -350,7 +416,8 @@ else if (number1>100)
             sci=Number(sci);
             la=Number(la);
             document.getElementById("xyg").hidden=true;
-            document.getElementById("sz").innerHTML="智商"+IQ+"&nbsp;&nbsp;&nbsp;&nbsp"+"颜值"+yanzhi+"&nbsp;&nbsp;&nbsp;&nbsp"+"健康"+jiankang;
+            document.getElementById("panni").hidden=true;
+            document.getElementById("sz").innerHTML="智商"+IQ+"　　　　　　"+"颜值"+yanzhi+"　　　　　　"+"健康"+jiankang;
             if(event==2)//时间换算
             {
                 event=0;
@@ -366,14 +433,14 @@ else if (number1>100)
                     month=1;
                 }
             }
-            
             if(month==2&&week==1&&event==1)//胜利判定
             {
                 document.getElementById("main").innerHTML="终于放寒假了,你赢了!";
-                document.getElementById("game").hidden=false;
+                document.getElementById("game").hidden=false; 
+                Cookies.set('tongguan', '1', { expires: 3560 })
             }else{
             event=event+1;//时间推进
-            document.getElementById("date").innerHTML=month+"月"+"&nbsp;&nbsp;&nbsp;&nbsp"+"第"+week+"个星期"+"&nbsp;&nbsp;&nbsp;&nbsp"+event+"/2";
+            document.getElementById("date").innerHTML=month+"月"+"　"+"第"+week+"个星期"+"　"+event+"/2";
             if(jiankang<=(0-5))//死亡判定
                 {
                     document.getElementById("main").innerHTML="健康值太低,你生了一场大病,你死了";
@@ -407,7 +474,7 @@ else if (number1>100)
                 }else if(month==11&&week==2&&event==2){
                     var bc = Math.random();
                     bc = Math.ceil(bc * 10);
-                    mid_term_exam=IQ*10+sci*2+la*3+bc-45
+                    mid_term_exam=IQ*10+sci*2+la*2+bc-65
                     if (mid_term_exam>499) {
                         mid_term_exam=499
                     } 
@@ -462,7 +529,7 @@ else if (number1>100)
                 }else if(month==1&&week==4&&event==2){
                     var bc = Math.random();
                     bc = Math.ceil(bc * 10);
-                    final_exam=IQ*10+sci*2+la*3+bc-45
+                    final_exam=IQ*10+sci*2+la*2+bc-65
                     if (final_exam>499) {
                         final_exam=499
                     } 
@@ -603,7 +670,11 @@ else if (number1>100)
                 document.getElementById("n").onclick=h_n;
                 document.getElementById("y").hidden=false;//显示选择按钮
                 document.getElementById("n").hidden=false;
+                if (panni>=4) {
+                    document.getElementById("panni").hidden=false;
+                    document.getElementById("panni").innerHTML="直接摆烂不写"
                 }
+            }
         function h_y(){
                 document.getElementById("main").innerHTML="你认真写完了作业,成绩提高了";
                 sci+=1;
@@ -628,6 +699,11 @@ else if (number1>100)
                 sci-=1;
                 la-=1;
                 jiankang+=2;
+                var aa = Math.random();
+                aa = Math.ceil(aa * 101);
+                if (aa<=80) {
+                    panni+=1;
+                }
                 document.getElementById("xyg").hidden=false;
                 document.getElementById("y").hidden=true;
                 document.getElementById("n").hidden=true;
@@ -844,6 +920,11 @@ else if (number1>100)
             document.getElementById("main").innerHTML="这天你看了一天电视,你玩得很高兴";
             xinqing+=3;
             jiankang-=1;
+            var aa = Math.random();
+                aa = Math.ceil(aa * 101);
+                if (aa<=80) {
+                    panni+=1;
+                }
             var ad = Math.random();
             ad = Math.ceil(ad * 101);
             if ((ad>=1 && ad<35) && myopia1) {//近视判定
@@ -918,6 +999,11 @@ else if (number1>100)
             jiankang+=1;
             xinqing+=3;
             IQ-=1;
+            var aa = Math.random();
+            aa = Math.ceil(aa * 101);
+            if (aa<=80) {
+                panni+=1;
+            }
             document.getElementById("xyg").hidden=false;
             document.getElementById("y").hidden=true;
             document.getElementById("n").hidden=true;
@@ -938,6 +1024,11 @@ else if (number1>100)
             document.getElementById("main").innerHTML="你玩了一整天";
             xinqing+=2;
             jiankang+=1;
+            var aa = Math.random();
+            aa = Math.ceil(aa * 101);
+            if (aa<=80) {
+                panni+=1;
+            }
             document.getElementById("xyg").hidden=false;
             document.getElementById("y").hidden=true;
             document.getElementById("n").hidden=true;
@@ -960,11 +1051,23 @@ else if (number1>100)
                 xinqing-=1;
                 jiankang-=1;
                 document.getElementById("xyg").hidden=false;  
-            document.getElementById("xyg").hidden=false;
+                document.getElementById("xyg").hidden=false;
             }
         }
-
+            function panni_h(){
+                    if (ht) {
+                        document.getElementById("main").innerHTML="天赋[有后台]发动<br>老师敢怒不敢言";
+                        xinqing+=1;
+                        IQ-=1;
+                    } else {
+                        document.getElementById("main").innerHTML="老师愤怒地批评了你";
+                        xinqing-=1;
+                    }
+                    IQ-=2;
+                    document.getElementById("xyg").hidden=false;
+            }
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </body>
 </html>
